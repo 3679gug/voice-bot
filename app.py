@@ -1,3 +1,16 @@
+import sys
+try:
+    import audioop
+except ImportError:
+    try:
+        from audioop_lts import *
+        import audioop_lts as audioop
+    except ImportError:
+         pass
+    else:
+        sys.modules['audioop'] = audioop
+        sys.modules['pyaudioop'] = audioop
+
 import streamlit as st
 from audiorecorder import audiorecorder
 import openai
